@@ -128,12 +128,14 @@ export const styles = StyleSheet.create({
         opacity: "90%"
     },
 
+
     local:{
         alignItems:"center",
         justifyContent:"center",
         padding:"30px",
         marginTop: "30px"
     }
+
 
     
 

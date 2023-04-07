@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 
+
 const borderRadius = 40;
 const inputPaddingX = 20;
 
@@ -89,4 +90,5 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 5,
     },
+
 })

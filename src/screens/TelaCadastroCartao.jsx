@@ -1,3 +1,4 @@
+
 import { View, Text, Picker, ScrollView } from "react-native-web";
 import { styles } from "../lib/cartao";
 import Hr from "react-native-hr-component";
@@ -89,5 +90,6 @@ export const TelaCadastroCartao = ({ navigation }) => {
         </View>
       </View>
     </ScrollView>
+
   );
 };

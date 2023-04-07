@@ -54,6 +54,7 @@ export const RootNavigation = () => {
     >
 
 
+
       <Stack.Screen
         name={"Introducao"}
         component={TelaIntrodução}
@@ -105,6 +106,7 @@ export const RootNavigation = () => {
               placeholderTextColor={"#888888"}
               style={principas.barrapesquisa}
               color="#fff"
+
             />
           ),
         }}
