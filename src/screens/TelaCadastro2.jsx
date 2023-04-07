@@ -1,34 +1,154 @@
-import { View, Image } from "react-native"
-import { Button, TextInput, Text } from "react-native-paper"
-import { styles } from "../lib/styles"
+import { View, Image, ScrollView } from "react-native";
+import { Button, TextInput, Text, HelperText } from "react-native-paper";
+import { styles } from "../lib/styles";
+import { useState } from "react";
+import { addDoc, collection } from "firebase/firestore";
+import { auth, db } from "../lib/firebase";
+import { log } from "react-native-reanimated";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-export const telaCadastro2 = ({ navigation }) => {
-    return (
+export const telaCadastro2 = ({ route, navigation }) => {
+  const { nome, sobrenome, email } = route.params;
 
-        <View style={styles.container}>
+  const [mostraErro, setMostraErro] = useState("");
+  
+  const [cpf, setCpf] = useState({
+    value: "",
+    error: "",
+  });
+  const [telefone, setTelefone] = useState({
+    value: "",
+    error: "",
+  });
+  const [password, setPassword] = useState({
+    value: "",
+    error: "",
+  });
+
+
+  function onRegisterPressed() {
+    console.log("RegistroIniciado");
+    let erro = false;
+
+    console.log("Nome: " + nome);
+    console.log("Sobrenome: " + sobrenome);
+    console.log("Email: " + email);
+    console.log("CPF: " + cpf);
+    console.log("Telefone: " + telefone);
+
+    createUserWithEmailAndPassword(auth, email, password.value)
+      .then((value) => {
+
+        console.log("Cadastrado com sucesso! " + value.user.uid);
+
+
+        createUserInCollection(value.user.uid);
 
 
 
-            <View style={styles.cadastro}>
-                <View>
-                    <Text style={styles.textoC}>Crie seu cadastro</Text>
-                </View>
-                <Image style={styles.imgE} source={{ uri: require("../imagens/bolinhasD.png") }} />
-            </View>
-            <View style={styles.input1}>
-                <TextInput style={styles.input} placeholder="CPF" />
-                <TextInput style={styles.input} placeholder="Telefone" />
-                <TextInput style={styles.input} placeholder="Senha" />
-            </View>
+      })
+      .catch((error) => console.log(error.code));
+    // .catch((error) => lidarComErro(error.code));
+    // }
+  }
 
-            <View style={styles.bot}>
-                <Button style={styles.btt} mode="contained" onPress={() => navigation.navigate("TelaPrincipal")}>Entrar</Button>
-            </View>
+  async function createUserInCollection(uid) {
+    //use addDoc to add a new document to a collection
+    const docRef = addDoc(collection(db, "usuarios"),
+      {
+        email: email,
+        nome: nome,
+        sobrenome: sobrenome,
+        uid: uid
+      })
+      .then((docRef) => {
+        console.log("Id do usuário: ", docRef.id);
+        navigation.navigate("Principal", {
+          mensagem: "Você se registrou com muito sucesso! 💋",
+        });
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      });
+  }
 
-            <View style={styles.texto2} >
-                <Text style={styles.texto3} onPress={() => navigation.navigate("Login")}>Já tem conta? Faça login</Text>
-            </View>
 
+  function lidarComErro(erro) {
+    if (erro == "auth/weak-password") {
+      setMostraErro("Senha muito Fraquinha");
+      return;
+    }
+    if (erro == "auth/credential-already-in-use") {
+      setMostraErro("E-mail já cadastrado");
+      return;
+    }
+    if (erro == "auth/invalid-telefone") {
+      setMostraErro("E-mail inválido");
+      return;
+    }
+    setMostraErro(erro);
+  }
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.cadastro}>
+        <View>
+          <Text style={styles.textoC}>Crie seu cadastro</Text>
         </View>
-    )
-}
+        <Image
+          style={styles.imgE}
+          source={{ uri: require("../imagens/bolinhasD.png") }}
+        />
+      </View>
+      <View style={styles.input1}>
+        <TextInput
+          style={styles.input}
+          placeholder="CPF"
+          returnKeyType="done"
+          value={cpf.value}
+          onChangeText={(text) => setCpf({ value: text, error: "" })}
+          error={!!cpf.error}
+          errorText={cpf.error}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Telefone"
+          returnKeyType="done"
+          value={telefone.value}
+          onChangeText={(text) => setTelefone({ value: text, error: "" })}
+          error={!!telefone.error}
+          errorText={telefone.error}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Senha"
+          returnKeyType="done"
+          value={password.value}
+          onChangeText={(text) => setPassword({ value: text, error: "" })}
+          error={!!password.error}
+          errorText={password.error}
+          secureTextEntry
+        />
+      </View>
+
+      <View style={styles.bot}>
+        <Button
+          style={styles.btt}
+          mode="contained"
+          onPress={onRegisterPressed}
+        >
+          Entrar
+        </Button>
+      </View>
+
+      <View style={styles.texto2}>
+        <Text
+          style={styles.texto3}
+          onPress={() => navigation.navigate("Login")}
+        >
+          Já tem conta? Faça login
+        </Text>
+      </View>
+    </View>
+  );
+};
