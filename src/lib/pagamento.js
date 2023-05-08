@@ -12,16 +12,16 @@ export const styles = StyleSheet.create({
   section: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: "50px",
-    marginTop:"40px"
+    marginBottom: 50,
+    marginTop:40
 
   },
 
   section1:{
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: "30px",
-    marginTop:"40px"
+    marginBottom: 30,
+    marginTop:40
 
   },
 
@@ -36,36 +36,36 @@ export const styles = StyleSheet.create({
   },
 
   textopague:{
-    width: "230px",
+    width: 230,
     textAlign:"center",
     justifyContent:"center",
     fontWeight:"bold",
-    fontSize:"18px",
+    fontSize:18,
 
   },
 
   textopague1:{
-    margin:"20px"
+    margin:20
 
 
   },
 
   hr:{
-    width:"100vh"
+    width:920
   },
 
   pagamento:{
-    width:"40vh"
+    width: 368
 
   },
 
   local:{
-    width:"190px",
+    width:190,
 
   },
 
   local1:{
-    width: "150px"
+    width: 150
   },
 
   botao1:{
@@ -74,7 +74,7 @@ export const styles = StyleSheet.create({
     shadowOffset: { width: -2, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 5,
-    marginBottom:"40px"
+    marginBottom:25
   },
 
   botao2:{
@@ -83,8 +83,14 @@ export const styles = StyleSheet.create({
     shadowOffset: { width: -2, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 5,
-    marginTop:"150px"
+    marginTop:150
 
-  }
+  },
+  textoCartao:{
+    paddingLeft:20,
+    paddingBottom:20,
+    
+
+}
 
 });

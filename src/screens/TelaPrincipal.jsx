@@ -1,5 +1,6 @@
+import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Image, Pressable, Text, TextInput, View } from "react-native";
+import { Image, Pressable, Text, View } from "react-native";
 import { AnimatedTabBarNavigator } from "react-native-animated-nav-tab-bar";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import Icon2 from "react-native-vector-icons/Feather";
@@ -9,12 +10,14 @@ import { principas } from "../lib/principas";
 import { TelaConfigura } from "./TelaConfigura";
 import { TelaCarrinho } from "./TelaCarrinho";
 import Carousel from "react-native-reanimated-carousel";
-import { telaLogin } from "./TelaLogin";
-import { ScrollView } from "react-native-web";
+import { ScrollView } from "react-native";
+import { db } from "../lib/firebase";
+import { collection, getDocs } from "firebase/firestore";
+
+import Skeleton from "../lib/skeleton";
 
 const Tabs = AnimatedTabBarNavigator();
 export function TabsNav() {
-  const navigation = useNavigation();
   return (
     <Tabs.Navigator
       appearance={{
@@ -59,21 +62,6 @@ export function TabsNav() {
       />
 
       <Tabs.Screen
-        name="User"
-        component={telaLogin}
-        options={{
-          tabBarIcon: ({ focused, color, size }) => (
-            <Icon2
-              name="user"
-              size={size ? size : 24}
-              color={focused ? color : "#fff"}
-              focused={focused}
-            />
-          ),
-        }}
-      />
-
-      <Tabs.Screen
         name="Configuração"
         component={TelaConfigura}
         options={{
@@ -103,6 +91,46 @@ const images = [
 
 const TelaPrincipal2 = ({}) => {
   const navigation = useNavigation();
+  const [produtos, setProdutos] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let timer = setInterval(() => {
+      setLoading(false);
+    }, 2500);
+  }, []);
+
+  useEffect(() => {
+    getDocs(collection(db, "Produtos")).then((querySnapshot) => {
+      const produtos = [];
+      querySnapshot.forEach((doc) => {
+        const {
+          Nome: Nome,
+          Descricao: Descricao,
+          Altura: Altura,
+          Imagem: Imagem,
+          Largura: Largura,
+          Material: Material,
+          Preço: Preço,
+          Profundidade: Profundidade,
+        } = doc.data();
+        produtos.push({
+          id: doc.id,
+          Nome,
+          Descricao,
+          Altura,
+          Imagem,
+          Largura,
+          Material,
+          Preço,
+          Profundidade,
+        });
+      });
+      setProdutos(produtos);
+      console.log(produtos);
+    });
+  }, []);
+
   return (
     <ScrollView>
       <View style={principas.tela}>
@@ -120,7 +148,7 @@ const TelaPrincipal2 = ({}) => {
                 style={{
                   flex: 1,
                   justifyContent: "center",
-                  borderRadius: "30px",
+                  borderRadius: 30,
                 }}
               >
                 <Image style={principas.image} source={item} />
@@ -130,158 +158,99 @@ const TelaPrincipal2 = ({}) => {
         </View>
 
         <View style={principas.circulosfora}>
-          <View style={[principas.circulos, principas.shadowProp]}>
-            <Icon3.Button
-              style={principas.iconebotao}
-              name="bed-outline"
-              backgroundColor="none"
-              color={"#695548"}
-              size={30}
-              onPress={() => navigation.navigate("Dormitorio")}
-            />
-            <Text style={principas.minitexto}>Quarto</Text>
+          <View>
+            <View style={[principas.circulos, principas.shadowProp]}>
+              <Icon3.Button
+                style={principas.iconebotao}
+                name="bed-outline"
+                backgroundColor={"rgba(0, 0, 0, 0.0)"}
+                color={"#695548"}
+                on-background={"none"}
+                size={30}
+                onPress={() => navigation.navigate("Dormitorio")}
+              />
+            </View>
+            <View>
+              <Text style={principas.minitexto}>Quarto</Text>
+            </View>
           </View>
 
-          <View style={[principas.circulos, principas.shadowProp]}>
-            <Icon4.Button
-              style={principas.iconebotao}
-              name="sofa-outline"
-              backgroundColor="none"
-              color={"#695548"}
-              size={30}
-              onPress={() => navigation.navigate("Sala")}
-            />
-            <Text style={principas.minitexto}>Sala</Text>
+          <View>
+            <View style={[principas.circulos, principas.shadowProp]}>
+              <Icon4.Button
+                style={principas.iconebotao}
+                name="sofa-outline"
+                backgroundColor={"rgba(0, 0, 0, 0.0)"}
+                color={"#695548"}
+                size={30}
+                onPress={() => navigation.navigate("Sala")}
+              />
+            </View>
+            <View>
+              <Text style={principas.minitexto}>Sala</Text>
+            </View>
           </View>
 
-          <View style={[principas.circulos, principas.shadowProp]}>
-            <Icon.Button
-              style={principas.iconebotao}
-              name="kitchen"
-              backgroundColor="none"
-              color={"#695548"}
-              size={30}
-              onPress={() => navigation.navigate("Cozinha")}
-            ></Icon.Button>
-            <Text style={principas.minitexto}>Cozinha</Text>
+          <View>
+            <View style={[principas.circulos, principas.shadowProp]}>
+              <Icon.Button
+                style={principas.iconebotao}
+                name="kitchen"
+                backgroundColor={"rgba(0, 0, 0, 0.0)"}
+                color={"#695548"}
+                size={30}
+                onPress={() => navigation.navigate("Cozinha")}
+              ></Icon.Button>
+            </View>
+            <View>
+              <Text style={principas.minitexto}>Cozinha</Text>
+            </View>
           </View>
 
-          <View style={[principas.circulos, principas.shadowProp]}>
-            <Icon4.Button
-              style={principas.iconebotao}
-              name="image-frame"
-              backgroundColor="none"
-              color={"#695548"}
-              size={30}
-              onPress={() => navigation.navigate("Decoração")}
-            ></Icon4.Button>
-            <Text style={principas.minitexto}>Aparatos</Text>
+          <View>
+            <View style={[principas.circulos, principas.shadowProp]}>
+              <Icon4.Button
+                style={principas.iconebotao}
+                name="image-frame"
+                backgroundColor={"rgba(0, 0, 0, 0.0)"}
+                color={"#695548"}
+                size={30}
+                onPress={() => navigation.navigate("Decoração")}
+              ></Icon4.Button>
+            </View>
+            <View>
+              <Text style={principas.minitexto}>Aparatos</Text>
+            </View>
           </View>
         </View>
 
+        <Skeleton visible={loading}>
+          <View style={principas.containerboxsSkeleton}>
+            {produtos.map((produto) => (
+              <Pressable
+                key={produto.id}
+                onPress={() =>
+                  navigation.navigate("PreCompra", { idCompra: produto.id })
+                }
+              >
+                <View style={principas.boxs}>
+                  <View style={principas.imgbox1}>
+                    <Image
+                      style={principas.imgbox}
+                      source={{ uri: produto.Imagem }}
+                    ></Image>
+                  </View>
 
-
-
-
-
-
-        <View style={principas.containerboxs}>
-          <Pressable onPress={() => navigation.navigate("PreCompra")}>
-            <View style={principas.boxs}>
-              <View style={principas.imgbox1}>
-                <Image
-                  style={principas.imgbox}
-                  source={{ uri: require("../imagens/mesa9.jpg") }}
-                ></Image>
-              </View>
-              <Text style={principas.boxstext}>Lorem Ipsum Lorem</Text>
-              <Text style={principas.boxstext1}>
-                Lorem Ipsum Lorem Ipsum Lorem
-              </Text>
-              <Text style={principas.boxstext2}>R$234,50</Text>
-            </View>
-          </Pressable>
-
-          <Pressable onPress={() => navigation.navigate("PreCompra")}>
-            <View style={principas.boxs}>
-              <View style={principas.imgbox1}>
-                <Image
-                  style={principas.imgbox}
-                  source={{ uri: require("../imagens/mesa9.jpg") }}
-                ></Image>
-              </View>
-              <Text style={principas.boxstext}>Lorem Ipsum Lorem</Text>
-              <Text style={principas.boxstext1}>
-                Lorem Ipsum Lorem Ipsum Lorem
-              </Text>
-              <Text style={principas.boxstext2}>R$234,50</Text>
-            </View>
-          </Pressable>
-
-          <Pressable onPress={() => navigation.navigate("PreCompra")}>
-            <View style={principas.boxs}>
-              <View style={principas.imgbox1}>
-                <Image
-                  style={principas.imgbox}
-                  source={{ uri: require("../imagens/mesa9.jpg") }}
-                ></Image>
-              </View>
-              <Text style={principas.boxstext}>Lorem Ipsum Lorem</Text>
-              <Text style={principas.boxstext1}>
-                Lorem Ipsum Lorem Ipsum Lorem
-              </Text>
-              <Text style={principas.boxstext2}>R$234,50</Text>
-            </View>
-          </Pressable>
-
-          <Pressable onPress={() => navigation.navigate("PreCompra")}>
-            <View style={principas.boxs}>
-              <View style={principas.imgbox1}>
-                <Image
-                  style={principas.imgbox}
-                  source={{ uri: require("../imagens/mesa9.jpg") }}
-                ></Image>
-              </View>
-              <Text style={principas.boxstext}>Lorem Ipsum Lorem</Text>
-              <Text style={principas.boxstext1}>
-                Lorem Ipsum Lorem Ipsum Lorem
-              </Text>
-              <Text style={principas.boxstext2}>R$234,50</Text>
-            </View>
-          </Pressable>
-
-          <Pressable onPress={() => navigation.navigate("PreCompra")}>
-            <View style={principas.boxs}>
-              <View style={principas.imgbox1}>
-                <Image
-                  style={principas.imgbox}
-                  source={{ uri: require("../imagens/mesa9.jpg") }}
-                ></Image>
-              </View>
-              <Text style={principas.boxstext}>Lorem Ipsum Lorem</Text>
-              <Text style={principas.boxstext1}>
-                Lorem Ipsum Lorem Ipsum Lorem
-              </Text>
-              <Text style={principas.boxstext2}>R$234,50</Text>
-            </View>
-          </Pressable>
-
-          <Pressable onPress={() => navigation.navigate("PreCompra")}>
-            <View style={principas.boxs}>
-              <View style={principas.imgbox1}>
-                <Image
-                  style={principas.imgbox}
-                  source={{ uri: require("../imagens/mesa9.jpg") }}
-                ></Image>
-              </View>
-              <Text style={principas.boxstext}>Lorem Ipsum Lorem</Text>
-              <Text style={principas.boxstext1}>
-                Lorem Ipsum Lorem Ipsum Lorem
-              </Text>
-              <Text style={principas.boxstext2}>R$234,50</Text>
-            </View>
-          </Pressable>
-        </View>
+                  <Text style={principas.boxstext}>{produto.Nome}</Text>
+                  <Text style={principas.boxstext1}>{produto.Preço}</Text>
+                </View>
+              </Pressable>
+            ))}
+          </View>
+        </Skeleton>
+        <Skeleton visible={loading}></Skeleton>
+        <Skeleton visible={loading}></Skeleton>
+        <Skeleton visible={loading}></Skeleton>
       </View>
     </ScrollView>
   );

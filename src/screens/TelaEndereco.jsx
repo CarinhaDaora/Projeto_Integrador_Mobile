@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { ScrollView } from "react-native-web";
+import { ScrollView } from "react-native";
 import { styles } from "../lib/config";
 
 export const TelaEndereco = ({ navigation }) => {
@@ -28,7 +28,7 @@ export const TelaEndereco = ({ navigation }) => {
             name="add-circle-outline"
             size={18}
             color="#34271F"
-            backgroundColor="none"
+            backgroundColor={"rgba(0, 0, 0, 0.0)"}
             onPress={() => {
               navigation.navigate("LocalizaçãoMimic");
             }}

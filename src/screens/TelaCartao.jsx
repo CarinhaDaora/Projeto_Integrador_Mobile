@@ -1,7 +1,7 @@
 import { View, Text, Pressable } from "react-native";
 import { styles } from "../lib/config";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { ScrollView } from "react-native-web";
+import { ScrollView } from "react-native";
 
 export const TelaCartao = ({ navigation }) => {
   return (
@@ -9,9 +9,9 @@ export const TelaCartao = ({ navigation }) => {
       <View style={styles.container}>
         <View style={styles.endereco}>
           <Text style={styles.text}>Cartão Crédito</Text>
-          <Text>Cartão de crédito mastercard *********</Text>
-          <Text>Samuel do Berimbal</Text>
-          <Text>Expira em 05/2023</Text>
+          <Text>Cartão de crédito mastercard ******</Text>
+          <Text>Samuel Souza</Text>
+          <Text>Expira em 12/2030</Text>
         </View>
 
         <View style={styles.text1}>
@@ -20,7 +20,7 @@ export const TelaCartao = ({ navigation }) => {
             name="credit-card-plus-outline"
             size={20}
             color="#34271F"
-            backgroundColor="none"
+            backgroundColor={"rgba(0, 0, 0, 0.0)"}
             onPress={() => {
               navigation.navigate("CadastroCartãoMimic");
             }}

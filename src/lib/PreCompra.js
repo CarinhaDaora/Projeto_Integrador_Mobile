@@ -6,49 +6,52 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F3ECE8",
-    padding:"20px",
+
+
   },
 
   container1: {
     flexDirection: "row",
-    padding: "20px",
+    paddingTop: 30,
+    paddingBottom: 15
   },
 
   imagempc: {
-    width: "150px",
-    height: "150px",
+    width: 150,
+    height: 150,
     borderRadius: 15,
   },
 
   imagem: {
-    shadowColor: "#171717",
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
+
     borderRadius: 15,
   },
 
   container2: {
-    width: "200px",
-    marginLeft: "20px",
+    width: 200,
+    marginLeft: 10,
   },
 
   texto1: {
-    fontSize: "17px",
+    fontSize: 17,
     fontWeight: "500",
     color: "#002710",
   },
 
   texto2: {
-    fontSize: "12px",
-    marginTop: "10px",
+    fontSize: 10,
+    marginTop: 3,
     fontWeight: "500",
-    color: "#30353B",
+    color: "gray"
   },
 
   texto3: {
-    marginTop: "10px",
-    fontSize: "17px",
+    fontSize: 14,
+  },
+
+  texto4: {
+    marginTop: 5,
+    fontSize: 17,
     fontWeight: "600",
     color: "gray",
   },
@@ -58,68 +61,54 @@ export const styles = StyleSheet.create({
     width: 160,
     height: 40,
     borderRadius: 40,
-    margin: "20px",
-    shadowColor: "#171717",
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
+    margin: 20,
+
     justifyContent: "center",
+    overflow: "hidden",
+
   },
 
   todosbotoes: {
     flexDirection: "row",
+    overflow: "hidden",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F3ECE8",
+
   },
 
-  boxs: {
-    position: "relative",
-    backgroundColor: "#fff",
-    width: "170px",
-    height: "200px",
-    padding: "10px",
-    shadowColor: "#171717",
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    borderRadius: 15,
-    marginTop:"20px",
-    alignContent: "space-around",
-  },
+
 
   imgbox1: {
     justifyContent: "center",
     alignItems: "center",
   },
 
-  containerprodutos: {
-    flex: 1,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    alignContent: "space-between",
-  },
+
 
   boxstext: {
-    fontSize: "14px",
-    marginTop: "20px",
+    fontSize: 14,
+    marginTop: 20,
     fontWeight: "500",
     color: "#002710",
   },
 
   boxstext1: {
-    marginTop: "2px",
-    fontSize: "8px",
+    marginTop: 2,
+    fontSize: 8,
   },
 
   boxstext2: {
-    marginTop: "10px",
-    fontSize: "13px",
+    marginTop: 5,
+    fontSize: 13,
     fontWeight: "500",
     color: "gray",
   },
 
   imgbox: {
-    width: "100px",
-    height: "100px",
+    width: 100,
+    height: 100,
   },
 
   imgbox1: {
@@ -128,8 +117,75 @@ export const styles = StyleSheet.create({
   },
 
   textotitulo: {
-    fontSize: "18px",
+    fontSize: 18,
     fontWeight: "600",
-    marginTop:"20px"
+    marginTop: 20
+  },
+
+
+
+
+  //skeleton
+
+  containerSkeleton: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    padding: 20,
+    overflow: "hidden",
+  },
+
+  container1Skeleton: {
+    flexDirection: "row",
+    padding: 10,
+    backgroundColor: "#fff",
+    overflow: "hidden",
+    borderRadius: 20,
+
+  },
+
+  imagempcSkeleton: {
+    width: 150,
+    height: 150,
+    borderRadius: 10,
+    backgroundColor: "#bcbfc0",
+    overflow: "hidden",
+
+  },
+
+
+  container2Skeleton: {
+    width: 150,
+    overflow: "hidden"
+  },
+
+  texto1Skeleton: {
+    marginTop: 4,
+    marginLeft: 20,
+    height: 20,
+    marginBottom: 15,
+    backgroundColor: "#bcbfc0",
+    overflow: "hidden"
+  },
+
+  texto2Skeleton: {
+
+    marginBottom: 5,
+    height: 10,
+    marginLeft: 20,
+    backgroundColor: "#bcbfc0",
+    overflow: "hidden"
+  },
+
+  texto3Skeleton: {
+    marginBottom: 5,
+    marginLeft: 20,
+    marginTop: 6,
+    backgroundColor: "#bcbfc0",
+    height: 25,
+    width: 60,
+    overflow: "hidden"
   },
 });

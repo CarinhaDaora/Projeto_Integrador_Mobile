@@ -5,7 +5,7 @@ import { Button, RadioButton } from "react-native-paper";
 import { styles } from "../lib/pagamento";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-export const TelaPagamento = ({ navigation }) => {
+export const TelaPagamento2 = ({ navigation }) => {
   const [checked, setChecked] = React.useState("first");
 
   return (
@@ -55,6 +55,10 @@ export const TelaPagamento = ({ navigation }) => {
         </View>
 
         <View style={styles.local}>
+          <Text style={styles.textoCartao}>Cartão de Crédito mastercard,
+            Samuel de Souza,
+            Expira em 12/2030
+          </Text>
           <Button
             style={styles.botao1}
             mode="contained"

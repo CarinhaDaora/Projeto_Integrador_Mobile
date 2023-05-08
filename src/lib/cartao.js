@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         padding:30,
         backgroundColor: '#F3ECE8',
-        marginTop: 150
+        marginTop: 60
     },
 
     text: {
@@ -80,15 +80,16 @@ export const styles = StyleSheet.create({
 
     botaozinho: {
         backgroundColor: "#34271F",
-        margin: "40px",
+        margin: 40,
         width: 160,
         height: 50,
         borderRadius: 50,
-        padding: '5px',
+        padding: 5,
         shadowColor: '#171717',
         shadowOffset: { width: -2, height: 4 },
         shadowOpacity: 0.2,
         shadowRadius: 5,
     },
+
 
 })

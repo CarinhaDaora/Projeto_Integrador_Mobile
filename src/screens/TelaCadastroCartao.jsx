@@ -1,5 +1,7 @@
 
-import { View, Text, Picker, ScrollView } from "react-native-web";
+import { View, Text, ScrollView } from "react-native";
+import { Picker } from "@react-native-picker/picker"
+
 import { styles } from "../lib/cartao";
 import Hr from "react-native-hr-component";
 import { Button, TextInput } from "react-native-paper";
@@ -14,7 +16,7 @@ export const TelaCadastroCartao = ({ navigation }) => {
     <ScrollView style={{ backgroundColor: "#F3ECE8" }}>
       <View style={styles.container}>
         <Text style={styles.text}>Cadastrar Cartão</Text>
-        <Hr lineColor="#d3d3d3" width={50} />
+        <Hr text=" " lineColor="#d3d3d3" width={50} />
         <Text style={styles.text2}>
           Insira as informações de cartão de crédito
         </Text>
@@ -83,7 +85,7 @@ export const TelaCadastroCartao = ({ navigation }) => {
           <Button
             style={styles.botaozinho}
             mode="contained"
-            onPress={() => navigation.navigate("Pagamento")}
+            onPress={() => navigation.navigate("Pagamento2")}
           >
             Confirmar
           </Button>

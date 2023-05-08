@@ -7,9 +7,12 @@ import {
   Portal,
   Provider,
   Text,
+  TextInput,
 } from "react-native-paper";
 
 import { styles } from "../lib/styles";
+
+const images = require ("../imagens/esqueceuaSenha.png")
 
 export const TelaEsqueceuaSenha = ({ navigation }) => {
   const [visible, setVisible] = useState(false);
@@ -23,12 +26,15 @@ export const TelaEsqueceuaSenha = ({ navigation }) => {
         <View>
           <Image
             style={styles.imgS}
-            source={{ uri: require("../imagens/esqueceuaSenha.png") }}
+            source={images}
           />
         </View>
 
         <View style={styles.textos}>
           <Text style={styles.textoR}>Recupere sua senha:</Text>
+          <View style={styles.inputd}>
+          <TextInput placeholder="Digite seu email" style={styles.input}></TextInput>
+          </View>
           <Text style={styles.textoS}>
             Será enviado um código sms ao número cadastrado.
           </Text>

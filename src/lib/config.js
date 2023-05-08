@@ -7,14 +7,15 @@ export const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        padding: '30px',
+        padding: 30,
         backgroundColor: '#F3ECE8',
     },
 
     text: {
         fontSize: 18,
         marginVertical: "5%",
-        fontWeight: 600
+        fontWeight: 400,
+        textDecorationLine:"underline"
     },
 
     text1: {
@@ -28,7 +29,6 @@ export const styles = StyleSheet.create({
         alignItems:"center",
         borderRadius: 15,
         backgroundColor: "#fff",
-        border: 10,
         shadowColor: '#171717',
         shadowOffset: { width: -2, height: 4 },
         shadowOpacity: 0.2,
@@ -54,7 +54,6 @@ export const styles = StyleSheet.create({
         padding: 20,
         borderRadius: 15,
         backgroundColor: "#fff",
-        border: 10,
         color:"black"
     },
 
@@ -80,7 +79,7 @@ export const styles = StyleSheet.create({
         backgroundColor: "white",
         color: "#BAC4BD",
         overflow: 'hidden',
-        fontSize: "15px",
+        fontSize: 15,
         shadowColor: '#171717',
         shadowOffset: { width: -2, height: 4 },
         shadowOpacity: 0.2,
@@ -100,6 +99,7 @@ export const styles = StyleSheet.create({
 
     botao3: {
         margin: 20,
+        marginTop: 10,
         borderRadius: 20,
         backgroundColor: "#fff",
         shadowColor: '#171717',
@@ -120,20 +120,19 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 10,
         flexDirection: 'row',
-        opacity: "40%"
     },
 
     textOpa: {
         fontSize: 14,
-        opacity: "90%"
     },
 
 
     local:{
         alignItems:"center",
         justifyContent:"center",
-        padding:"30px",
-        marginTop: "30px"
+        padding:30,
+        marginTop: 10,
+        overflow:'hidden'
     }
 
 
