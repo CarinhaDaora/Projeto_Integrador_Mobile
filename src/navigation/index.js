@@ -44,6 +44,7 @@ import { TelaPedido } from "../screens/TelaPedido";
 const Stack = createNativeStackNavigator();
 export const RootNavigation = ({ navigation }) => {
   return (
+
     <NavigationContainer>
       <Stack.Navigator
         style={styles.tab}
@@ -87,6 +88,7 @@ export const RootNavigation = ({ navigation }) => {
             headerStyle: { backgroundColor: "#2C2019" },
             headerTransparent: false,
             headerLeft: () => (
+
               <Image
                 source={require("../imagens/TF.png")}
                 style={{
@@ -96,6 +98,7 @@ export const RootNavigation = ({ navigation }) => {
                   marginRight: 40,
                 }}
               />
+
             ),
             headerRight: () => (
               <Searchbar
@@ -115,6 +118,7 @@ export const RootNavigation = ({ navigation }) => {
             headerStyle: { backgroundColor: "#2C2019" },
             headerTransparent: false,
             headerLeft: () => (
+
               <Image
                 source={require("../imagens/TF.png")}
                 style={{ width: 40, height: 40, alignItems: "center" }}

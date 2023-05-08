@@ -1,5 +1,7 @@
+
 import { View, Text, ScrollView } from "react-native";
 import { Picker } from "@react-native-picker/picker"
+
 import { styles } from "../lib/cartao";
 import Hr from "react-native-hr-component";
 import { Button, TextInput } from "react-native-paper";
@@ -90,5 +92,6 @@ export const TelaCadastroCartao = ({ navigation }) => {
         </View>
       </View>
     </ScrollView>
+
   );
 };

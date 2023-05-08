@@ -126,6 +126,7 @@ export const styles = StyleSheet.create({
         fontSize: 14,
     },
 
+
     local:{
         alignItems:"center",
         justifyContent:"center",
@@ -133,6 +134,7 @@ export const styles = StyleSheet.create({
         marginTop: 10,
         overflow:'hidden'
     }
+
 
     
 
